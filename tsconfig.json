@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "newLine": "lf",
+    "allowJs": false,
+    "target": "ES2020",
+    "module": "CommonJS",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": [
+    "domain",
+    "server"
+  ]
+}
