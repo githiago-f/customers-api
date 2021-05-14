@@ -1,0 +1,9 @@
+{
+  "name": "portfolio-domain",
+  "version": "1.0.0",
+  "description": "Dominio que expressa funcionamento de portifolio de clientes de uma empresa de telecomunicações",
+  "main": "dist/index.js",
+  "author": "tfarias@protonmail.com",
+  "license": "MIT",
+  "private": true
+}

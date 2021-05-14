@@ -1,0 +1,9 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend responsável por traduzir as informações e requisições em conceitos do dominio",
+  "main": "dist/index.js",
+  "author": "tfarias@protonmail.com",
+  "license": "MIT",
+  "private": true
+}
