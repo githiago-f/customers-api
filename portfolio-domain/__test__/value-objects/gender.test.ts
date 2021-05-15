@@ -1,4 +1,4 @@
-import { Gender } from '../../src/value-objects';
+import { Gender } from '../../src';
 
 describe('#Gender', () => {
   describe('.valid', () => {

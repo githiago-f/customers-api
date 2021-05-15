@@ -1,5 +1,5 @@
 import {range} from 'lodash';
-import { Name } from '../../src/value-objects';
+import { Name } from '../../src';
 
 describe('#Name', () => {
   describe('.valid', () => {

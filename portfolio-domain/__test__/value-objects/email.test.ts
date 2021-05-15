@@ -1,5 +1,5 @@
 import {range} from 'lodash';
-import { Email } from './../../src/value-objects';
+import { Email } from './../../src';
 
 describe('#Email', () => {
   describe('.valid', () => {

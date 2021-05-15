@@ -1,6 +1,10 @@
 import { InvalidEmail } from "./errors/invalid-email";
 
-export const Email = (value: string) => {
+export const Email = (value?: string) => {
+  if(!value){
+    throw new InvalidEmail('E-mail should not be null or empty');
+  }
+
   const emailRegex = /^[\w.-]+@([\w-]+\.)+\w{2,}$/;
   const size = value.trim().length;
 

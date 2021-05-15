@@ -7,7 +7,10 @@ const validValues = [
   'uninformed'
 ];
 
-export const Gender = (value: string) => {
+export const Gender = (value?: string) => {
+  if(!value) {
+    throw new InvalidGender();
+  }
   if(value.trim().length < 1 && !some(validValues, value.toLowerCase())) {
     throw new InvalidGender();
   }
