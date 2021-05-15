@@ -8,6 +8,7 @@
   "private": true,
   "devDependencies": {
     "@types/jest": "^26.0.23",
+    "@types/lodash": "^4.14.169",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.6",
     "ts-node": "^9.1.1",
@@ -17,5 +18,8 @@
     "test:dev": "./node_modules/.bin/jest --watchAll",
     "test": "./node_modules/.bin/jest",
     "build": "./node_modules/.bin/tsc --build"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
