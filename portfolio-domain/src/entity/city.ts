@@ -1,9 +1,14 @@
-import { Name } from "../value-objects";
+import { Name } from '../value-objects';
 
 export type CityDTO = Partial<{
   id: number;
   name: string;
 }>;
+
+export type City = {
+  id?: number;
+  name: string;
+}
 
 export const City = (cityDto: CityDTO) => {
   return {

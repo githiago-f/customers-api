@@ -11,6 +11,17 @@ export type CustomerDTO = Partial<{
   titulation: string;
 }>;
 
+export type Customer = {
+  id: number | undefined;
+  first_name: string;
+  last_name: string;
+  email: string;
+  company: string | number | undefined;
+  city: string | number | undefined;
+  titulation: string | undefined;
+  gender: string;
+};
+
 export const Customer = (customerDto: CustomerDTO) => ({
   id: customerDto.id,
   first_name: Name(customerDto.first_name),
