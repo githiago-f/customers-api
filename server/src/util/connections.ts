@@ -1,7 +1,7 @@
 import { knex, Knex } from 'knex';
 import {resolve} from 'path';
 
-export type DBConnection = () => Knex<any, unknown[]>;
+export type DBConnection = Knex<any, unknown[]>;
 
 export const prodConnection = () => knex({
   client: 'mysql',
@@ -22,14 +22,3 @@ export const devConnection = () => knex({
   useNullAsDefault: true
 });
 
-export const testConnection = () => knex({
-  client: 'sqlite3',
-  connection: ':memory:',
-  pool: {
-    min: 1,
-    max: 1,
-    idleTimeoutMillis: 360000*1000,
-    destroyTimeoutMillis: 360000*1000
-  },
-  useNullAsDefault: true
-});

@@ -12,7 +12,7 @@ import { Exists } from './errors/exists';
  * @param connection {DBConnection}
  * @returns {CustomerRepository}
  */
-export const CustomerRepositoryKNEX = (connection: DBConnection) => {
+export const CustomerRepositoryKNEX = (conn: DBConnection) => {
   const self = {} as CustomerRepository;
   const fields = [
     'customers.id',
@@ -22,10 +22,10 @@ export const CustomerRepositoryKNEX = (connection: DBConnection) => {
     'customers.titulation'
   ];
 
-  const customers = () => connection().table('customers');
+  const customers = () => conn.table('customers');
 
   self.create = async (customer) => {
-    const trx = await connection().transaction();
+    const trx = await conn.transaction();
     try {
       const table = trx.table('customers');
       const [row] = await table
@@ -34,9 +34,9 @@ export const CustomerRepositoryKNEX = (connection: DBConnection) => {
       if(row.exists>0) {
         throw new Exists('Customer');
       }
-      await table.insert(customer, '*');
+      const created = await table.insert(customer, '*');
       await trx.commit();
-      return;
+      return created.shift();
     } catch(e) {
       await trx.rollback();
       throw e;
