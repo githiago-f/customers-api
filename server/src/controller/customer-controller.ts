@@ -17,9 +17,6 @@ export const CustomerController: Controller = (router, con) => {
     };
     const { page, city } = req.query as Query;
     if(city) {
-      if(isNaN(city)) {
-        return Unprocessable(res, new Error('City should be a valid ID'));
-      }
       const customersByCity = await customerRepository.findByCityPaged(city, page);
       return Ok(res, customersByCity);
     }
