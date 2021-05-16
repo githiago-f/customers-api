@@ -1,18 +1,19 @@
 {
   "name": "customers-api",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "private": true,
   "workspaces": {
     "packages": [
       "server",
-      "portfolio-domain"
+      "portfolio-domain",
+      "client"
     ]
   },
   "scripts": {
     "server": "yarn workspace server",
     "domain": "yarn workspace portfolio-domain",
+    "client": "yarn workspace client",
     "test:all": "echo \"Error: Implement all tests\""
   },
   "devDependencies": {
