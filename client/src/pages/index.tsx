@@ -1,8 +1,9 @@
 import React from 'react';
-import { Customer } from '../components/Cards/Customer';
 
-export const IndexPage = () => (
-  <div className="container mx-auto px-4">
-    <h3 className="">Mensagem teste</h3>
+const IndexPage = () =>(
+  <div>
+    <h3>Página inicial</h3>
   </div>
 );
+
+export default IndexPage;

@@ -1,6 +1,29 @@
 @tailwind base;
 @tailwind components;
 
-
+h1 {
+  @apply text-3xl font-bold text-gray-900;
+}
+h2 {
+  @apply text-2xl font-medium text-gray-800 py-3;
+}
+main {
+  @apply bg-gray-50;
+}
+.customer-list {
+  @apply gap-2 grid grid-cols-1 px-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4;
+}
+.customer-card {
+  @apply shadow flex flex-row border-none cursor-pointer rounded-md;
+}
+.customer-card:hover {
+  @apply border-2 border-pink-300;
+}
+.info {
+  @apply px-3 py-3;
+}
+.total-in-city {
+  @apply bg-white w-full p-3 rounded-sm flex flex-col justify-between;
+}
 
 @tailwind utilities;
