@@ -1,3 +1,4 @@
+process.env.UV_THREAD_POOL = '1';
 import express, { Router } from 'express';
 import morgan from 'morgan';
 import { CityController } from './controller/city-controller';

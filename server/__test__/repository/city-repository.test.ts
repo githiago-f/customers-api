@@ -1,11 +1,11 @@
-import {testConnection} from '../mocks/connection';
+import {testConnection} from '../connection/connection';
 import {CityRespositoryKNEX} from '../../src/repository/city-repository';
-import { CityRepository } from 'portfolio-domain';
+import { City, CityDTO, CityRepository } from 'portfolio-domain';
 import { Knex } from 'knex';
 
 describe('#CityRepository', () => {
   let cityRepository: CityRepository;
-  let conn: Knex<any, unknown[]>;
+  let conn: Knex<CityDTO, City[]>;
   beforeEach(async () => {
     conn = testConnection();
     await conn.migrate.latest();
@@ -34,6 +34,17 @@ describe('#CityRepository', () => {
             message: 'City already exists.'
           });
         });
+      });
+    });
+  });
+
+  describe('.getAll', () => {
+    it('returns a list with one item', async () => {
+      const all = await cityRepository.getAll();
+      expect(all.length).toBe(1);
+      expect(all.shift()).toMatchObject({
+        id: 1,
+        name: 'Esteio,RS'
       });
     });
   });
