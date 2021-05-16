@@ -14,6 +14,16 @@ export const testConnection = () => knex({
   migrations: {
     directory: resolve(__dirname, '../../migrations')
   },
+  seeds: {
+    directory: resolve(__dirname, '../../seeds')
+  },
   log: {},
   useNullAsDefault: true
 });
+
+export const createConnection = async () => {
+  const con = testConnection();
+  await con.migrate.latest();
+  await con.seed.run();
+  return con;
+};

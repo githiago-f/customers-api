@@ -5,7 +5,7 @@ import { Exists } from './errors/exists';
 export const CompanyRepositoryKNEX = (conn: DBConnection) => {
   const self = {} as CompanyRepository;
 
-  const companies = () => conn().table('companies');
+  const companies = () => conn.table('companies');
 
   self.create = async (company) => {
     const trx = await conn.transaction();

@@ -1,18 +1,17 @@
 import { Knex } from 'knex';
 import { Customer, CustomerDTO, CustomerRepository } from 'portfolio-domain';
 import {CustomerRepositoryKNEX} from '../../src/repository/customer-repository';
-import { testConnection } from '../connection/connection';
+import { createConnection } from '../connection/connection';
 
 describe('#CustomerRepository', () => {
   let customerRepository: CustomerRepository;
-  let conn: Knex<CustomerDTO, Customer[]>;
+  let con: Knex<CustomerDTO, Customer[]>;
   beforeEach(async () => {
-    conn = testConnection();
-    customerRepository = CustomerRepositoryKNEX(conn);
-    await conn.migrate.latest();
+    con = await createConnection();
+    customerRepository = CustomerRepositoryKNEX(con);
   });
   afterEach(async () => {
-    conn.destroy();
+    con.destroy();
   });
 
   describe('.create', () => {

@@ -4,7 +4,7 @@ import {resolve} from 'path';
 export type DBConnection = Knex<any, unknown[]>;
 
 export const prodConnection = () => knex({
-  client: 'mysql',
+  client: 'mysql2',
   connection: {
     host: process.env.DB_HOST||'localhost',
     database: process.env.DB_NAME||'application',
