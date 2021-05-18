@@ -32,6 +32,7 @@ var customer_controller_1 = require("./controller/customer-controller");
 var connections_1 = require("./util/connections");
 var is_production_1 = require("./util/is-production");
 var conn = is_production_1.isProduction() ? connections_1.prodConnection() : connections_1.devConnection();
+var serverPort = process.env.PORT || 8080;
 var app = express_1["default"]();
 app.use(morgan_1["default"](is_production_1.isProduction() ? 'short' : 'dev'));
 app.use(cors_1["default"]());
@@ -39,6 +40,6 @@ app.use(express_1["default"].json());
 app.use('/city', city_controller_1.CityController(express_1.Router(), conn));
 app.use('/company', company_controller_1.CompanyController(express_1.Router(), conn));
 app.use('/customer', customer_controller_1.CustomerController(express_1.Router(), conn));
-app.listen(8080, function () {
-    console.log('Listening at 8080');
+app.listen(serverPort, function () {
+    console.log("Listening at " + serverPort);
 });
