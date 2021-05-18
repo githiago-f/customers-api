@@ -22,7 +22,7 @@
     "test": "./node_modules/.bin/jest",
     "build": "./node_modules/.bin/tsc --build",
     "start:dev": "set NODE_ENV=development && yarn migrate && yarn build && node .",
-    "start": "yarn migrate && yarn build && node .",
+    "start": "yarn migrate && node .",
     "migrate": "yarn knex migrate:latest && yarn knex seed:run",
     "rollback": "yarn knex migrate:rollback --all",
     "knex": "./node_modules/.bin/knex"
