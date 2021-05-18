@@ -1,0 +1,70 @@
+name: CD - Build and deploy
+description: Builds and deploys all API components to heroku and github pages.
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  # Tests all the application - front, back and domain
+  check-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build domain
+        run: yarn domain build
+
+      - name: Test all
+        run: yarn test:all
+
+  build-back:
+    needs: check-app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build domain
+        run: yarn server build
+
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: api-release
+          FOLDER: server/dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-front:
+    needs: check-app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build domain
+        run: yarn domain build
+
+      - name: Build client
+        run: yarn client build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: ./client/build
