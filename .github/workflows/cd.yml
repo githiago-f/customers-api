@@ -1,5 +1,4 @@
 name: CD - Build and deploy
-description: Builds and deploys all API components to heroku and github pages.
 
 on:
   push:
