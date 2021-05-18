@@ -13,7 +13,7 @@ const CustomersAtCity = () => {
   return (
     <>
       <h2>
-        <BackArrow to={'/cities'}/>
+        <BackArrow to={'/'}/>
         Clientes na cidade:
       </h2>
       <div hidden={!loading}>

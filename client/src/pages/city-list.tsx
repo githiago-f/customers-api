@@ -8,8 +8,7 @@ const CityList = () => {
   const {cityCustomers, loading} = useLoadAllCities();
   return (
     <>
-      <h2>
-        <BackArrow to={'/'}/>
+      <h2 className="pl-3">
         Cidades
       </h2>
       <div className="customer-list" hidden={loading}>

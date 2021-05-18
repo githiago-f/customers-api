@@ -1,6 +1,7 @@
 import React from 'react';
 import { BackArrow } from '../components/BackArrow';
-export const CreateCustomer = () => {
+
+const CreateCustomer = () => {
   return (
     <>
       <h2>
@@ -10,3 +11,5 @@ export const CreateCustomer = () => {
     </>
   );
 };
+
+export default CreateCustomer;

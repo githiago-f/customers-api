@@ -2,7 +2,8 @@ import React from 'react';
 import { BackArrow } from '../components/BackArrow';
 import { Loading } from '../components/Loading';
 import { useLoadCustomerById } from '../hooks/customer-by-id';
-export const EditCustomer = () => {
+
+const EditCustomer = () => {
   const {
     customer,
     loading
@@ -23,3 +24,5 @@ export const EditCustomer = () => {
     </>
   );
 };
+
+export default EditCustomer;

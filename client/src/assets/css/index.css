@@ -5,7 +5,13 @@ h1 {
   @apply text-3xl font-bold text-gray-900;
 }
 h2 {
-  @apply text-2xl font-medium text-gray-800 py-3;
+  @apply text-2xl font-medium text-gray-800 py-3 pl-4;
+}
+h3 {
+  @apply text-xl;
+}
+h4 {
+  @apply text-gray-600;
 }
 main {
   @apply bg-gray-50;
@@ -24,6 +30,9 @@ main {
 }
 .total-in-city {
   @apply bg-white w-full p-3 rounded-sm flex flex-col justify-between;
+}
+.fab-btn {
+  @apply fixed bottom-5 right-5 bg-indigo-500 text-white rounded-full p-5 text-3xl font-bold shadow;
 }
 
 @tailwind utilities;
