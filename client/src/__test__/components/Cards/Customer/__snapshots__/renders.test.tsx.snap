@@ -23,14 +23,12 @@ Object {
         >
           <h4>
             <small
-              class="text-gray-600"
               title="tfarias@gmail.com"
             >
               tfarias@gmail.com
             </small>
           </h4>
           <h3
-            class="text-xl"
             data-testid="customer-name"
           >
             Thiago Dutra
@@ -61,14 +59,12 @@ Object {
       >
         <h4>
           <small
-            class="text-gray-600"
             title="tfarias@gmail.com"
           >
             tfarias@gmail.com
           </small>
         </h4>
         <h3
-          class="text-xl"
           data-testid="customer-name"
         >
           Thiago Dutra
