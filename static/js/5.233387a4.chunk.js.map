@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/index.tsx"],"names":["IndexPage"],"mappings":"iGAAA,uBAQeA,UANG,kBAChB,8BACE","file":"static/js/5.233387a4.chunk.js","sourcesContent":["import React from 'react';\n\nconst IndexPage = () =>(\n  <div>\n    <h3>Página inicial</h3>\n  </div>\n);\n\nexport default IndexPage;\n"],"sourceRoot":""}
