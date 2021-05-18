@@ -44,7 +44,7 @@ jobs:
         env:
           REPO: self
           BRANCH: api-release
-          FOLDER: server/dist
+          FOLDER: server
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-front:

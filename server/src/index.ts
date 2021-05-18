@@ -10,6 +10,7 @@ import { isProduction } from './util/is-production';
 
 const conn = isProduction() ? prodConnection() : devConnection();
 
+const serverPort = process.env.PORT || 8080;
 const app = express();
 
 app.use(morgan(isProduction() ? 'short' : 'dev'));
@@ -20,6 +21,6 @@ app.use('/city', CityController(Router(), conn));
 app.use('/company', CompanyController(Router(), conn));
 app.use('/customer', CustomerController(Router(), conn));
 
-app.listen(8080, () => {
-  console.log('Listening at 8080');
+app.listen(serverPort, () => {
+  console.log(`Listening at ${serverPort}`);
 });
