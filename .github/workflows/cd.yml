@@ -34,6 +34,9 @@ jobs:
         run: yarn install
 
       - name: Build domain
+        run: yarn domain build
+
+      - name: Build server
         run: yarn server build
 
       - name: Deploy
