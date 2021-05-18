@@ -19,3 +19,8 @@ export const customersByCity = async (city_id: string, page = 0) => {
   console.log(data);
   return data;
 };
+
+export const createCustomer = async (customer: Customer) => {
+  const {status, data} = await portfolioApi.post('/customer', customer);
+  console.log(status, data);
+};

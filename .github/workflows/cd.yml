@@ -7,23 +7,23 @@ on:
 
 jobs:
   # Tests all the application - front, back and domain
-  check-app:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-      - name: Install dependencies
-        run: yarn install
+  # check-app:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         persist-credentials: false
+  #     - name: Install dependencies
+  #       run: yarn install
 
-      - name: Build domain
-        run: yarn domain build
+  #     - name: Build domain
+  #       run: yarn domain build
 
-      - name: Test all
-        run: yarn test:all
+  #     - name: Test all
+  #       run: yarn test:all
 
   build-back:
-    needs: check-app
+    # needs: check-app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -45,7 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-front:
-    needs: check-app
+    # needs: check-app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

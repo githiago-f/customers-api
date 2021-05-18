@@ -34,5 +34,14 @@ main {
 .fab-btn {
   @apply fixed bottom-5 right-5 bg-indigo-500 text-white rounded-full p-5 text-3xl font-bold shadow;
 }
+input, select {
+  @apply w-full;
+}
+form > div {
+  @apply py-2;
+}
+.submit {
+  @apply w-full font-bold border-2 border-indigo-900 text-base text-white bg-indigo-600 hover:bg-white hover:text-indigo-900 rounded-sm p-3;
+}
 
 @tailwind utilities;
