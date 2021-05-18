@@ -10,7 +10,6 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
-    "noEmit": true,
     "jsx": "react-jsx",
     "target": "es5",
     "allowJs": true,
@@ -18,10 +17,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": "./src",
+    "noEmit": true
   },
   "include": [
-    "src"
+    "src",
+    "src/__test__"
   ],
   "references": [
     {

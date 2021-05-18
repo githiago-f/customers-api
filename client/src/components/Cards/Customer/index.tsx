@@ -15,7 +15,7 @@ export const CustomerComponent = (props: Customer) => (
       <h4>
         <small title={props.email} className="text-gray-600">{props.email}</small>
       </h4>
-      <h3 className="text-xl">{props.first_name + ' ' + props.last_name}</h3>
+      <h3 data-testid="customer-name" className="text-xl">{props.first_name + ' ' + props.last_name}</h3>
       <h4>
         <small>{props.company}</small>
       </h4>
