@@ -21,8 +21,8 @@
     "test:dev": "./node_modules/.bin/jest --watchAll",
     "test": "./node_modules/.bin/jest",
     "build": "./node_modules/.bin/tsc --build",
-    "start:dev": "set NODE_ENV=development && yarn migrate && yarn build && node .",
-    "start": "yarn migrate && node .",
+    "start:dev": "set NODE_ENV=development && yarn migrate && yarn build && nodemon .",
+    "start": "set NODE_ENV=production && yarn build && yarn migrate && node .",
     "migrate": "yarn knex migrate:latest && yarn knex seed:run",
     "rollback": "yarn knex migrate:rollback --all",
     "knex": "./node_modules/.bin/knex"
@@ -33,6 +33,8 @@
     "knex": "^0.95.5",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
+    "socket.io": "^4.1.2",
     "sqlite3": "^5.0.2"
   }
 }
