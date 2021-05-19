@@ -100,13 +100,19 @@ describe('#CustomerRepository', () => {
   describe('.update', () => {
     describe('when customer has id and data to update', () => {
       it('should update customer\'s data', async () => {
-        const customer = {
+        const customer = Customer({
           id: 1,
-          first_name: 'Thiago'
-        } as CustomerDTO;
+          first_name: 'Thiago',
+          last_name: 'Dutra',
+          email: 'isis.daici@github.com',
+          city: 1,
+          company: 1,
+          gender: 'male'
+        });
         const updated = await customerRepository.update(customer) as Customer;
         expect(updated.email).toBe('isis.daici@github.com');
         expect(updated.first_name).toBe('Thiago');
+        expect(updated.gender).toBe('male')
       });
     });
   });
