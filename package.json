@@ -14,7 +14,8 @@
     "server": "yarn workspace server",
     "domain": "yarn workspace portfolio-domain",
     "client": "yarn workspace client",
-    "test": "yarn domain build && yarn domain test && yarn server test && yarn client test"
+    "pretest": "yarn install && yarn domain build",
+    "test": "yarn domain test && yarn server test && yarn client test"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.23.0",
