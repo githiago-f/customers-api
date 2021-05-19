@@ -32,7 +32,8 @@ main {
   @apply bg-white w-full p-3 rounded-sm flex flex-col justify-between;
 }
 .fab-btn {
-  @apply fixed bottom-5 right-5 bg-indigo-500 text-white rounded-full p-5 text-3xl font-bold shadow;
+  @apply fixed bottom-5 right-5 bg-indigo-500 text-white text-center rounded-full w-14 h-14 text-3xl font-bold shadow;
+  padding-top: 6px;
 }
 input, select {
   @apply w-full;

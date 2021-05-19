@@ -1,4 +1,4 @@
-import { Email, Gender, Name } from "../value-objects";
+import { Email, Gender, Name } from '../value-objects';
 
 export type CustomerDTO = Partial<{
   id: number;

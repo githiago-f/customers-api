@@ -1,5 +1,5 @@
-import { useCreateCustomer } from 'hooks/create-customer';
 import React from 'react';
+import { useCreateCustomer } from 'hooks/create-customer';
 import { BackArrow } from '../components/BackArrow';
 
 const CreateCustomer = () => {
@@ -7,14 +7,16 @@ const CreateCustomer = () => {
     customer,
     alterField,
     cities,
-    companies } = useCreateCustomer();
+    companies,
+    error,
+    create } = useCreateCustomer();
   return (
     <>
       <h2>
         <BackArrow to={'/'}/>
         Criar cliente
       </h2>
-      <div className="px-2 mx-auto max-w-sm">
+      <div className="px-2 mx-auto mb-10 max-w-sm">
         <form action="/customer" method="post" className="grid grid-flow-row" onSubmit={()=>false}>
           <div data-testid="first_name-container">
             <label htmlFor="first_name">Primeiro nome:</label>
@@ -22,7 +24,7 @@ const CreateCustomer = () => {
               type="text"
               name="first_name"
               id="first_name"
-              value={customer.first_name}
+              defaultValue={customer.first_name}
               onChange={alterField}
             />
           </div>
@@ -32,7 +34,17 @@ const CreateCustomer = () => {
               type="text"
               name="last_name"
               id="last_name"
-              value={customer.last_name}
+              defaultValue={customer.last_name}
+              onChange={alterField}
+            />
+          </div>
+          <div data-testid="email-container">
+            <label htmlFor="email">E-mail:</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              defaultValue={customer.email}
               onChange={alterField}
             />
           </div>
@@ -47,7 +59,12 @@ const CreateCustomer = () => {
           </div>
           <div data-testid="company-container">
             <label htmlFor="company">Empresa: </label>
-            <select onChange={alterField} name="company" id="company">
+            <select
+              onChange={alterField}
+              defaultValue={customer.company}
+              name="company"
+              id="company"
+            >
               <option value="0">Selecione uma empresa</option>
               {companies.map(i=>(
                 <option key={i.id} value={i.id}>{i.name}</option>
@@ -60,7 +77,7 @@ const CreateCustomer = () => {
               type="text"
               name="titulation"
               id="titulation"
-              value={customer.titulation}
+              defaultValue={customer.titulation}
               onChange={alterField}
             />
           </div>
@@ -72,6 +89,7 @@ const CreateCustomer = () => {
                   type="radio"
                   name="gender"
                   id="male"
+                  onChange={alterField}
                   value="male"
                 />&nbsp;
                 Masculino
@@ -81,6 +99,7 @@ const CreateCustomer = () => {
                   type="radio"
                   name="gender"
                   id="female"
+                  onChange={alterField}
                   value="female"
                 />&nbsp;
                 Feminino
@@ -90,14 +109,18 @@ const CreateCustomer = () => {
                   type="radio"
                   name="gender"
                   id="uninformed"
+                  onChange={alterField}
                   value="uninformed"
                 />&nbsp;
                 Não informar
               </label>
             </div>
           </div>
+          <div className="p-2 bg-red-200 border-red-900 border-2" hidden={error===null}>
+            <span className="text-black font-bold">{error?.message||''}</span>
+          </div>
           <div data-testid="submit-container">
-            <button className="submit" type="submit">
+            <button className="submit" onClick={create} type="submit">
               Criar
             </button>
           </div>

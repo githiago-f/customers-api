@@ -1,4 +1,4 @@
-import { CustomerRepository } from 'portfolio-domain';
+import { CustomerRepository, Email, Name } from 'portfolio-domain';
 import { DBConnection } from '../util/connections';
 import { paged } from '../util/paged';
 import { Exists } from './errors/exists';
@@ -51,11 +51,11 @@ export const CustomerRepositoryKNEX = (conn: DBConnection) => {
 
   self.findById = async (id) => {
     return await customers()
-      .select(...fields, 'cities.name as city', 'companies.name as company')
+      .select('customers.*', 'cities.id as city', 'companies.id as company')
       .leftJoin('cities', 'customers.city', 'cities.id')
       .leftJoin('companies', 'customers.company', 'companies.id')
       .where('customers.id', id)
-      .first();
+      .first() || null;
   };
 
   self.findByCityPaged = async (city, page = 0) => {
@@ -80,6 +80,24 @@ export const CustomerRepositoryKNEX = (conn: DBConnection) => {
       .count('customers.id', {as: 'customers_total'})
       .leftJoin('cities', 'cities.id', 'customers.city')
       .groupBy('city');
+  };
+
+  self.update = async (customer) => {
+    if(!customer.id) {
+      throw new Error('Customer isn\'t present');
+    }
+    const tcx = await conn.transaction();
+    try {
+      await tcx.table('customers')
+        .where('id', customer.id)
+        .update(customer);
+      await tcx.commit();
+      return await customers()
+        .where('id', customer.id)
+        .first();
+    } catch (e) {
+      await tcx.rollback();
+    }
   };
 
   return self;

@@ -1,4 +1,4 @@
-import { Customer, CustomersInCity } from 'portfolio-domain';
+import { Customer, CustomerDTO, CustomersInCity } from 'portfolio-domain';
 import { portfolioApi } from './config';
 
 export const customersGroupedByCity = async () => {
@@ -9,6 +9,7 @@ export const customerById = async (customerId: string) => {
   const {data} = await portfolioApi.get<Customer>('/customer/'+customerId);
   return data;
 };
+
 export const customersByCity = async (city_id: string, page = 0) => {
   const {data} = await portfolioApi.get<Customer[]>('/customer', {
     params: {
@@ -20,7 +21,12 @@ export const customersByCity = async (city_id: string, page = 0) => {
   return data;
 };
 
-export const createCustomer = async (customer: Customer) => {
+export const createCustomer = async (customer: CustomerDTO) => {
   const {status, data} = await portfolioApi.post('/customer', customer);
-  console.log(status, data);
+  return {status, data};
+};
+
+export const updateCustomer = async (customer: Customer) => {
+  const {status, data} = await portfolioApi.patch('/customer', customer);
+  return {status, data};
 };

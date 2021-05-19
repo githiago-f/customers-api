@@ -11,20 +11,24 @@ export const CustomerController: Controller = (router, con) => {
   const customerRepository = CustomerRepositoryKNEX(con);
 
   router.get('/', async (req, res) => {
-    type Query = {
-      page?:number;
-      city?:number;
-    };
-    const { page, city } = req.query as Query;
-    if(city) {
-      const customersByCity = await customerRepository.findByCityPaged(city, page);
-      return Ok(res, customersByCity);
+    try {
+      type Query = {
+        page?:number;
+        city?:number;
+      };
+      const { page, city } = req.query as Query;
+      if(city) {
+        const customersByCity = await customerRepository.findByCityPaged(city, page);
+        return Ok(res, customersByCity);
+      }
+      const customers = await customerRepository.findAllPaged(page);
+      return Ok(res, customers);
+    }catch (e){
+      return InternalError(res, e);
     }
-    const customers = await customerRepository.findAllPaged(page);
-    return Ok(res, customers);
   });
 
-  router.get('/groupByCity', async (_, res) => {
+  router.get('/groupByCity', (_, res) => {
     customerRepository.totalByCity()
       .then(data => Ok(res, data))
       .catch(e => InternalError(res, e));
@@ -48,6 +52,17 @@ export const CustomerController: Controller = (router, con) => {
     } catch(e) {
       if(/^Invalid/.test(e.name)) { return Unprocessable(res, e); }
       if(e.name === 'EntryConflict') { return Conflict(res, e); }
+      return InternalError(res, e);
+    }
+  });
+
+  router.patch('/', async (req, res) => {
+    try {
+      const customer = Customer(req.body);
+      const updated = await customerRepository.update(customer);
+      return res.status(202).json(updated);
+    } catch (e) {
+      if(/^Invalid/.test(e.name)) { return Unprocessable(res, e); }
       return InternalError(res, e);
     }
   });

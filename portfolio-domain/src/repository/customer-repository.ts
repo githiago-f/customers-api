@@ -7,4 +7,5 @@ export interface CustomerRepository {
   findByCityPaged(city: number, page?: number): Promise<Customer[]>;
   findById(id: number): Promise<Customer|undefined|null>;
   totalByCity(): Promise<CustomersInCity[]>;
+  update(customer: Customer): Promise<void|Customer>;
 }
