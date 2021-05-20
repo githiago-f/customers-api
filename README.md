@@ -4,6 +4,10 @@
 
 `domain` - the main concepts of the project.
 
+## Commands
+
+> NOTE: It's necessary to build domain before all tests or execution commands because it's a common dependencie used to test data structures and validate all entities of this domain.
+
 ### Run tests
 
 The following script will run:
@@ -12,8 +16,6 @@ The following script will run:
 2. domain test;
 3. server test;
 4. client test;
-
-It's necessary to build domain before all tests because is a common dependencie used to test data structures and validate all entities of this domain.
 
 ```bash
  yarn test
