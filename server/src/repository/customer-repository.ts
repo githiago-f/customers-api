@@ -45,6 +45,7 @@ export const CustomerRepositoryKNEX = (conn: DBConnection) => {
 
   self.findAllPaged = async (page = 0) => {
     const data = await customers().select()
+      .orderBy('customers.id', 'desc')
       .limit(10)
       .offset(paged(page));
     const query = customers().count('id', {as: 'count'}).first();
@@ -64,7 +65,7 @@ export const CustomerRepositoryKNEX = (conn: DBConnection) => {
   self.findByCityPaged = async (city, page = 0) => {
     if(isNaN(city)) {
       const localCity = await conn.table('cities')
-        .select('id')
+        .select()
         .where({name:city})
         .first();
       city = localCity.id;
@@ -74,6 +75,7 @@ export const CustomerRepositoryKNEX = (conn: DBConnection) => {
       .select(...fields, 'companies.name as company')
       .leftJoin('companies', 'customers.company', 'companies.id')
       .where('customers.city', city)
+      .orderBy('customers.id', 'desc')
       .limit(10)
       .offset(paged(page));
 

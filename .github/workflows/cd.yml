@@ -20,20 +20,6 @@ jobs:
       - name: Test all
         run: yarn test
 
-  # build-back:
-  #   needs: check-app
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         persist-credentials: false
-
-  #     - name: Install dependencies
-  #       run: yarn install
-
-  #     - name: Build domain
-  #       run: yarn domain build
-
   build-front:
     needs: check-app
     runs-on: ubuntu-latest
@@ -57,3 +43,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: ./client/build
+
+  build-back:
+    needs: check-app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Build, Push and Deploy to Heroku
+        uses: jctaveras/heroku-deploy@v1.0.0 # use the latest version of the action
+        with:
+          email: ${{ secrets.HEROKU_EMAIL }}
+          api_key: ${{ secrets.HEROKU_API_KEY }}
+          app_name: ${{ secrets.HEROKU_APP_NAME }}
+          dockerfile_path: './'
+          formation: 'web'
