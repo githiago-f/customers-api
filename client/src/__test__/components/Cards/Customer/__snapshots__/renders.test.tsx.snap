@@ -10,12 +10,12 @@ Object {
         href="/customer/5"
       >
         <div
-          class="w-24"
+          class="w-40"
         >
           <img
             alt="profile of tfarias@gmail.com"
             class="rounded-l-md w-full h-full"
-            src="https://via.placeholder.com/64x64?text=Thiago"
+            src="https://via.placeholder.com/300x300?text=Thiago"
           />
         </div>
         <div
@@ -46,12 +46,12 @@ Object {
       href="/customer/5"
     >
       <div
-        class="w-24"
+        class="w-40"
       >
         <img
           alt="profile of tfarias@gmail.com"
           class="rounded-l-md w-full h-full"
-          src="https://via.placeholder.com/64x64?text=Thiago"
+          src="https://via.placeholder.com/300x300?text=Thiago"
         />
       </div>
       <div
