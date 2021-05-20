@@ -23,16 +23,28 @@ It's necessary to build domain before all tests because is a common dependencie 
 
 #### Client
 
+This will build and run the client application (at port 3000)
+
 ```bash
  yarn client start
 ```
 
 #### Server
 
+This will build and setup an application to docker-cli (runned at port 8080).
+
 ```bash
- yarn server start
+ docker-compose up
 ```
 
-### Why Knex?
-Consulted benchmark: [Knex Vs Sequelize](https://stackshare.io/stackups/knex-js-vs-sequelize).
+### Routes open
 
+`/customer` - GET, POST and PATCH - CRU(no D) routes
+`/customer/:id` - GET - gets one customer by its ID
+`/city` - GET and POST - CR(no U or D) routes
+`/companies` - GET and POST - CR(no U or D) routes
+
+### Considerations
+
+#### Why Knex?
+Consulted benchmark: [Knex Vs Sequelize](https://stackshare.io/stackups/knex-js-vs-sequelize).
