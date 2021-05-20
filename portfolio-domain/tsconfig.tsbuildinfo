@@ -261,9 +261,14 @@
         "signature": "26f83dc1dc7795bf68d31ef07e6c00d30cdedbf67a654bcf90e2ce078cc7d807",
         "affectsGlobalScope": false
       },
+      "./src/value-objects/paged.ts": {
+        "version": "489b848b1283fd6da04e19d1cc38396a5ece0fa264f319982f64995b25e00fac",
+        "signature": "ab75110df3936b6d8d62799ab3f66c946337ef09f81879c58029fbeac9484281",
+        "affectsGlobalScope": false
+      },
       "./src/value-objects/index.ts": {
-        "version": "69af81c9d8f42f89a74e8c369e55c81ce7687a04b6a489bc236ccf1d62c81ead",
-        "signature": "64f14808c235a924afb82bbcd6b72f21f091dfca209e99942ff6f9f09c4594e6",
+        "version": "b4c60a4c280b7651e7cdc6b40b8d7813450e7598d3b4ca4f934d74fe439b6ae7",
+        "signature": "5cfc543a681a019760f2b2939f69290314e9b329de7cc3c1f20deb035609ca6c",
         "affectsGlobalScope": false
       },
       "./src/entity/city.ts": {
@@ -287,8 +292,8 @@
         "affectsGlobalScope": false
       },
       "./src/repository/customer-repository.ts": {
-        "version": "752db68da27d073055836ade07f8642d088f3e69025dd79f4800fc90ec36595c",
-        "signature": "d78872115c76d4d61537a493f014d6a60b97229d3d773e6fff8bab6a25372739",
+        "version": "f36c7f990284386cd0f62e282ddeff14aecbb3c51878587a0f40d90a25fa02fc",
+        "signature": "1f8e95c3f2de6c51c59ae9251b26fe4443b0d691fd3d88efa837edad2fce784f",
         "affectsGlobalScope": false
       },
       "./src/repository/city-repository.ts": {
@@ -1644,7 +1649,8 @@
       ],
       "./src/repository/customer-repository.ts": [
         "./src/entity/index.ts",
-        "./src/value-objects/customers-in-city.ts"
+        "./src/value-objects/customers-in-city.ts",
+        "./src/value-objects/paged.ts"
       ],
       "./src/repository/index.ts": [
         "./src/repository/city-repository.ts",
@@ -1671,7 +1677,8 @@
         "./src/value-objects/email.ts",
         "./src/value-objects/errors/index.ts",
         "./src/value-objects/gender.ts",
-        "./src/value-objects/name.ts"
+        "./src/value-objects/name.ts",
+        "./src/value-objects/paged.ts"
       ],
       "./src/value-objects/name.ts": [
         "./src/value-objects/errors/index.ts"
@@ -2308,7 +2315,8 @@
       ],
       "./src/repository/customer-repository.ts": [
         "./src/entity/index.ts",
-        "./src/value-objects/customers-in-city.ts"
+        "./src/value-objects/customers-in-city.ts",
+        "./src/value-objects/paged.ts"
       ],
       "./src/repository/index.ts": [
         "./src/repository/city-repository.ts",
@@ -2328,7 +2336,8 @@
         "./src/value-objects/email.ts",
         "./src/value-objects/errors/index.ts",
         "./src/value-objects/gender.ts",
-        "./src/value-objects/name.ts"
+        "./src/value-objects/name.ts",
+        "./src/value-objects/paged.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -2529,7 +2538,8 @@
       "./src/value-objects/errors/invalid-name.ts",
       "./src/value-objects/gender.ts",
       "./src/value-objects/index.ts",
-      "./src/value-objects/name.ts"
+      "./src/value-objects/name.ts",
+      "./src/value-objects/paged.ts"
     ]
   },
   "version": "4.2.4"

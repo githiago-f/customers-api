@@ -1,4 +1,4 @@
-import { CustomerRepository, Email, Name } from 'portfolio-domain';
+import { CustomerRepository, Paged } from 'portfolio-domain';
 import { DBConnection } from '../util/connections';
 import { paged } from '../util/paged';
 import { Exists } from './errors/exists';
@@ -44,9 +44,12 @@ export const CustomerRepositoryKNEX = (conn: DBConnection) => {
   };
 
   self.findAllPaged = async (page = 0) => {
-    return await customers().select()
+    const data = await customers().select()
       .limit(10)
       .offset(paged(page));
+    const query = customers().count('id', {as: 'count'}).first();
+    const pages = Math.ceil((await query).count as number / 10);
+    return Paged({results: data, pages });
   };
 
   self.findById = async (id) => {
@@ -66,12 +69,22 @@ export const CustomerRepositoryKNEX = (conn: DBConnection) => {
         .first();
       city = localCity.id;
     }
-    return await customers()
+
+    const data = await customers()
       .select(...fields, 'companies.name as company')
       .leftJoin('companies', 'customers.company', 'companies.id')
       .where('customers.city', city)
       .limit(10)
       .offset(paged(page));
+
+    const num = await customers()
+      .where('customers.city', city)
+      .count('id', {as: 'count'})
+      .first();
+
+    const pages = Math.ceil(num.count as number / 10);
+
+    return Paged({results: data, pages});
   };
 
   self.totalByCity = async () => {

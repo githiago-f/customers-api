@@ -1,4 +1,4 @@
-import { Customer, CustomerDTO, CustomersInCity } from 'portfolio-domain';
+import { Customer, CustomerDTO, CustomersInCity, Page } from 'portfolio-domain';
 import { portfolioApi } from './config';
 
 export const customersGroupedByCity = async () => {
@@ -11,13 +11,12 @@ export const customerById = async (customerId: string) => {
 };
 
 export const customersByCity = async (city_id: string, page = 0) => {
-  const {data} = await portfolioApi.get<Customer[]>('/customer', {
+  const {data} = await portfolioApi.get<Page<Customer>>('/customer', {
     params: {
       city: city_id,
       page: page
     }
   });
-  console.log(data);
   return data;
 };
 
