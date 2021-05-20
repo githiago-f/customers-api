@@ -40,8 +40,11 @@ This will build and setup an application to docker-cli (runned at port 8080).
 ### Routes open
 
 `/customer` - GET, POST and PATCH - CRU(no D) routes
+
 `/customer/:id` - GET - gets one customer by its ID
+
 `/city` - GET and POST - CR(no U or D) routes
+
 `/companies` - GET and POST - CR(no U or D) routes
 
 ### Considerations
