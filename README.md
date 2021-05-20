@@ -1,5 +1,7 @@
 # Costumers 🙋🏽‍♀️🙋🏽‍♂️
 
+[![CI/CD](https://github.com/githiago-f/customers-api/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/githiago-f/customers-api/actions/workflows/cd.yml)
+
 ## Key words
 
 `domain` - the main concepts of the project.
