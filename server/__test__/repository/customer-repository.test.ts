@@ -112,7 +112,7 @@ describe('#CustomerRepository', () => {
         const updated = await customerRepository.update(customer) as Customer;
         expect(updated.email).toBe('isis.daici@github.com');
         expect(updated.first_name).toBe('Thiago');
-        expect(updated.gender).toBe('male')
+        expect(updated.gender).toBe('male');
       });
     });
   });

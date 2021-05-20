@@ -20,7 +20,7 @@
     "test:dev": "./node_modules/.bin/jest --watchAll",
     "test": "./node_modules/.bin/jest --forceExit",
     "build": "./node_modules/.bin/tsc --build",
-    "start:dev": "nodemon .",
+    "start:dev": "yarn migrate && nodemon .",
     "start": "node .",
     "migrate": "yarn knex migrate:latest && yarn knex seed:run",
     "rollback": "yarn knex migrate:rollback --all",
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "knex": "^0.95.5",
     "morgan": "^1.10.0",

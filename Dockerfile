@@ -14,9 +14,12 @@ COPY package.json .
 COPY yarn.lock .
 
 RUN yarn install --production --pure-lockfile --non-interactive --cache-folder ./ycache; rm -rf ./ycache
-# RUN yarn server add @types/express @types/knex @types/morgan typescript ts-node
-# RUN yarn domain add @types/lodash typescript
+RUN yarn server add @types/express @types/knex @types/morgan typescript ts-node
+RUN yarn domain add @types/lodash typescript
 
-RUN yarn server start
+RUN yarn domain build
+RUN yarn server build
+
+CMD yarn server migrate && yarn server start
 
 EXPOSE 8080
