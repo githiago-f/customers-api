@@ -7,7 +7,7 @@ import { Conflict } from '../util/res/conflict-response';
 import { Ok } from '../util/res/ok-response';
 import { InternalError } from '../util/res/internal-response';
 
-export const CustomerController: Controller = (router, con) => {
+export const CustomerController: Controller = (router, con, socket) => {
   const customerRepository = CustomerRepositoryKNEX(con);
 
   router.get('/', async (req, res) => {
@@ -48,6 +48,7 @@ export const CustomerController: Controller = (router, con) => {
     try {
       const customer = Customer(req.body);
       const created = await customerRepository.create(customer);
+      socket.emit('alterated customers');
       return Created(res, created);
     } catch(e) {
       if(/^Invalid/.test(e.name)) { return Unprocessable(res, e); }
@@ -60,6 +61,7 @@ export const CustomerController: Controller = (router, con) => {
     try {
       const customer = Customer(req.body);
       const updated = await customerRepository.update(customer);
+      socket.emit('alterated customers');
       return res.status(202).json(updated);
     } catch (e) {
       if(/^Invalid/.test(e.name)) { return Unprocessable(res, e); }

@@ -4,6 +4,8 @@ import morgan from 'morgan';
 import cors from 'cors';
 import {config} from 'dotenv';
 import {resolve} from 'path';
+import { createServer } from 'http';
+import {Server} from 'socket.io';
 import { CityController } from './controller/city-controller';
 import { CompanyController } from './controller/company-controller';
 import { CustomerController } from './controller/customer-controller';
@@ -18,6 +20,14 @@ const connection = prodConnection();
 
 const serverPort = process.env.PORT || 8080;
 const app = express();
+const server = createServer(app);
+
+const socket = new Server(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET','POST','OPTIONS','PATCH']
+  }
+});
 
 app.use(morgan(isProduction() ? 'short' : 'dev'));
 app.use(cors());
@@ -25,8 +35,12 @@ app.use(express.json());
 
 app.use('/city', CityController(Router(), connection));
 app.use('/company', CompanyController(Router(), connection));
-app.use('/customer', CustomerController(Router(), connection));
+app.use('/customer', CustomerController(Router(), connection, socket));
 
-app.listen(serverPort, () => {
+socket.on('connect', () => {
+  console.log('User has connected.\n');
+});
+
+server.listen(serverPort, () => {
   console.log(`Listening at ${serverPort}`);
 });

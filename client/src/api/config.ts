@@ -1,5 +1,7 @@
 import Axios from 'axios';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export const portfolioApi = Axios.create({
-  baseURL: 'http://localhost:8080'
+  baseURL: isProduction ? '' : 'http://localhost:8080'
 });
