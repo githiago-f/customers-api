@@ -1,0 +1,20 @@
+name: CD - Build and deploy
+
+on:
+  pull-request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  check-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Test all
+        run: yarn test

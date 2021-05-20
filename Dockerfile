@@ -20,6 +20,6 @@ RUN yarn domain add @types/lodash typescript
 RUN yarn domain build
 RUN yarn server build
 
-CMD yarn server migrate && yarn server start
+CMD yarn server rollback && yarn server migrate && yarn server start
 
 EXPOSE 8080
