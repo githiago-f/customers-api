@@ -28,7 +28,7 @@ const CustomersAtCity = () => {
         ))}
       </div>
       <div className="space-x-2 mb-16 flex flex-row justify-end" hidden={pages!==0}>
-        {range(1, pages+6).map(i=> (
+        {range(1, pages+1).map(i=> (
           <button className="page-select" onClick={()=>loadMore(i)} key={i}>{i}</button>
         ))}
       </div>

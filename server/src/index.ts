@@ -11,7 +11,7 @@ import { prodConnection } from './util/connections';
 import { isProduction } from './util/is-production';
 
 config({
-  path:  resolve(__dirname, '../local.env')
+  path: resolve(__dirname, '../local.env')
 });
 
 const connection = prodConnection();
