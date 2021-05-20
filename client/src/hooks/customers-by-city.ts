@@ -7,10 +7,20 @@ type Props = {
   city_id?:string;
 }
 
+const test = Customer({
+  city: 2,
+  email: 'email@email.com',
+  first_name: 'atata',
+  company: 1,
+  gender: 'female',
+  last_name: 'askldjf',
+  titulation: 'jaehaufhe'
+});
+
 export const useLoadCustomersByCity = () => {
   const {params: {city_id}} = useRouteMatch<Props>();
   const [loading, setLoading] = useState(true);
-  const [customers, setCustomers] = useState([] as Customer[]);
+  const [customers, setCustomers] = useState([test,test,test,test,test,test,test,test,test,test] as Customer[]);
   const [pages, setPages] = useState(0);
 
   useEffect(() => {

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 export const CustomerComponent = (props: Customer) => (
   <Link to={`/customer/${props.id}`} className="customer-card">
-    <div className="w-24">
+    <div className="w-40">
       <img
-        src={`https://via.placeholder.com/64x64?text=${props.first_name}`}
+        src={`https://via.placeholder.com/300x300?text=${props.first_name}`}
         alt={`profile of ${props.email}`}
         className="rounded-l-md w-full h-full"
       />

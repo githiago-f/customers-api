@@ -58,17 +58,20 @@ describe('#CustomerRepository', () => {
   describe('.findAllPaged', () => {
     it('returns the first 10 items in the table', async () => {
       const pageOne = await customerRepository.findAllPaged();
-      expect(pageOne.length).toBe(10);
+      expect(pageOne.results.length).toBe(10);
+      expect(pageOne.pages).toBe(2);
     });
   });
   describe('.findByCityPaged', () => {
     it('returns the first 10 items in the city', async () => {
       const pageOne = await customerRepository.findByCityPaged(1);
-      expect(pageOne.length).toBe(10);
+      expect(pageOne.results.length).toBe(10);
+      expect(pageOne.pages).toBe(2);
     });
     it('returns the last items in this database', async () => {
       const pageOne = await customerRepository.findByCityPaged(1, 2);
-      expect(pageOne.length).toBe(1);
+      expect(pageOne.results.length).toBe(1);
+      expect(pageOne.pages).toBe(2);
     });
   });
   describe('.findById', () => {

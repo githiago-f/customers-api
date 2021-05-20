@@ -17,10 +17,10 @@ main {
   @apply bg-gray-50;
 }
 .customer-list {
-  @apply gap-2 grid grid-cols-1 px-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4;
+  @apply gap-2 grid grid-cols-1 px-3 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2;
 }
 .customer-card {
-  @apply shadow flex flex-row border-none cursor-pointer rounded-md;
+  @apply shadow flex flex-row border-none cursor-pointer rounded-md h-40;
 }
 .customer-card:hover {
   @apply border-2 border-pink-300;
@@ -43,6 +43,9 @@ form > div {
 }
 .submit {
   @apply w-full font-bold border-2 border-indigo-900 text-base text-white bg-indigo-600 hover:bg-white hover:text-indigo-900 rounded-sm p-3;
+}
+.page-select {
+  @apply p-3 bg-indigo-600 text-white;
 }
 
 @tailwind utilities;

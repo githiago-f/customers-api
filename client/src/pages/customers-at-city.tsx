@@ -22,14 +22,14 @@ const CustomersAtCity = () => {
       <div hidden={!loading}>
         <Loading/>
       </div>
-      <div className="customer-list" hidden={loading}>
+      <div className="customer-list mb-5" hidden={loading}>
         {customers.map((i, idx)=>(
           <CustomerComponent {...i} key={idx} />
         ))}
       </div>
-      <div hidden={pages===0}>
-        {range(1, pages+1).map(i=> (
-          <a href="#" onClick={()=>loadMore(i)} key={i}>{i}</a>
+      <div className="space-x-2 mb-16 flex flex-row justify-end" hidden={pages!==0}>
+        {range(1, pages+6).map(i=> (
+          <button className="page-select" onClick={()=>loadMore(i)} key={i}>{i}</button>
         ))}
       </div>
     </>
