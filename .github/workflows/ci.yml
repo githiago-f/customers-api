@@ -1,7 +1,7 @@
 name: CD - Build and deploy
 
 on:
-  pull-request:
+  pull_request:
     branches: [ main ]
   workflow_dispatch:
 
