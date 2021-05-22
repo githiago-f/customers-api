@@ -12,11 +12,11 @@ export async function up(knex: Knex): Promise<void> {
       tableBuilder.string('last_name', 80).notNullable();
       tableBuilder.string('email', 320).notNullable().unique();
       tableBuilder.bigInteger('company')
-        .notNullable()
+        .unsigned().index()
         .references('id')
         .inTable('companies');
       tableBuilder.bigInteger('city')
-        .notNullable()
+        .unsigned().index()
         .references('id')
         .inTable('cities');
       tableBuilder.string('titulation', 320);
@@ -32,4 +32,3 @@ export async function down(knex: Knex): Promise<void> {
     return knex.schema.dropTable(customerTable);
   }
 }
-
