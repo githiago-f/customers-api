@@ -3,7 +3,7 @@ import Axios from 'axios';
 export const isProduction = process.env.NODE_ENV === 'production';
 
 export const hosts = {
-  PRODUCTION_URL: 'https://customers-ghitiago.herokuapp.com/',
+  PRODUCTION_URL: 'https://customers-portifolio.herokuapp.com/',
   DEVELOPMENT_URL: 'http://localhost:8080'
 };
 
