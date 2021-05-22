@@ -9,14 +9,14 @@ import {Server} from 'socket.io';
 import { CityController } from './controller/city-controller';
 import { CompanyController } from './controller/company-controller';
 import { CustomerController } from './controller/customer-controller';
-import { prodConnection } from './util/connections';
+import { devConnection, prodConnection } from './util/connections';
 import { isProduction } from './util/is-production';
 
 config({
   path: resolve(__dirname, '../local.env')
 });
 
-const connection = prodConnection();
+const connection = isProduction() ? prodConnection() : devConnection();
 
 const serverPort = process.env.PORT || 8080;
 const app = express();
@@ -39,6 +39,10 @@ app.use('/customer', CustomerController(Router(), connection, socket));
 
 socket.on('connect', () => {
   console.log('User has connected.\n');
+});
+
+socket.on('disconnect', () => {
+  console.log('User has disconnected');
 });
 
 server.listen(serverPort, () => {

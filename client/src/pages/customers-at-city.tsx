@@ -27,9 +27,13 @@ const CustomersAtCity = () => {
           <CustomerComponent {...i} key={idx} />
         ))}
       </div>
-      <div className="space-x-2 mb-16 flex flex-row justify-end" hidden={pages!==0}>
-        {range(1, pages+1).map(i=> (
-          <button className="page-select" onClick={()=>loadMore(i)} key={i}>{i}</button>
+      <div className="space-x-2 mb-16 flex flex-row justify-end" hidden={pages<=1}>
+        {pages<=1||range(1, pages+1).map(i=> (
+          <button
+            className="page-select"
+            onClick={()=>loadMore(i)}
+            key={i}
+          >{i}</button>
         ))}
       </div>
     </>

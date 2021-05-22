@@ -3,5 +3,10 @@ import { hosts, isProduction } from './config';
 
 export const connect = () => {
   const socket = io(isProduction ? hosts.PRODUCTION_URL : hosts.DEVELOPMENT_URL);
+
+  window.onclose = () => {
+    socket.disconnect();
+  };
+
   return socket;
 };

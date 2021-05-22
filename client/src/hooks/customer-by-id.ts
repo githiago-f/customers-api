@@ -32,8 +32,14 @@ export const useLoadCustomerById = () => {
       customerById(id as string)
     ])
       .then(e=> {
-        setCities(e[0]);
-        setCompanies(e[1]);
+        setCities([
+          { id: 0, name: 'Selecione uma cidade'},
+          ...e[0]
+        ]);
+        setCompanies([
+          {id: 0, name: 'Selecione uma empresa'},
+          ...e[1]
+        ]);
         setCustomer(e[2]);
       })
       .catch(console.error)

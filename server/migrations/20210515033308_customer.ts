@@ -1,7 +1,10 @@
 import { Knex } from 'knex';
+import { resetIndex } from '../utils/reset-index';
+
+const customerTable = 'customers';
 
 export async function up(knex: Knex): Promise<void> {
-  const hasTable =  await knex.schema.hasTable('customers');
+  const hasTable =  await knex.schema.hasTable(customerTable);
   if(!hasTable) {
     return knex.schema.createTable('customers', (tableBuilder) => {
       tableBuilder.bigIncrements('id');
@@ -23,10 +26,10 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-  const hasTable =  await knex.schema.hasTable('customers');
+  const hasTable =  await knex.schema.hasTable(customerTable);
   if(hasTable) {
-    await knex.raw('ALTER TABLE customers AUTO_INCREMENT=1');
-    return knex.schema.dropTable('customers');
+    resetIndex(knex, customerTable);
+    return knex.schema.dropTable(customerTable);
   }
 }
 

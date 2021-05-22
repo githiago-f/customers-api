@@ -1,6 +1,8 @@
 import React from 'react';
 import { useCreateCustomer } from 'hooks/create-customer';
 import { BackArrow } from '../components/BackArrow';
+import { TextInput } from 'components/Form/Inptus/text';
+import { Select } from 'components/Form/Inptus/select';
 
 const CreateCustomer = () => {
   const {
@@ -18,69 +20,50 @@ const CreateCustomer = () => {
       </h2>
       <div className="px-2 mx-auto mb-10 max-w-sm">
         <form action="/customer" method="post" className="grid grid-flow-row" onSubmit={()=>false}>
-          <div data-testid="first_name-container">
-            <label htmlFor="first_name">Primeiro nome:</label>
-            <input
-              type="text"
-              name="first_name"
-              id="first_name"
-              defaultValue={customer.first_name}
-              onChange={alterField}
-            />
-          </div>
-          <div data-testid="last_name-container">
-            <label htmlFor="last_name">Segundo nome:</label>
-            <input
-              type="text"
-              name="last_name"
-              id="last_name"
-              defaultValue={customer.last_name}
-              onChange={alterField}
-            />
-          </div>
-          <div data-testid="email-container">
-            <label htmlFor="email">E-mail:</label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              defaultValue={customer.email}
-              onChange={alterField}
-            />
-          </div>
-          <div data-testid="city-container">
-            <label htmlFor="city">Cidade: </label>
-            <select onChange={alterField} name="city" id="city">
-              <option value="0">Selecione uma cidade</option>
-              {cities.map(i=>(
-                <option key={i.id} value={i.id}>{i.name}</option>
-              ))}
-            </select>
-          </div>
-          <div data-testid="company-container">
-            <label htmlFor="company">Empresa: </label>
-            <select
-              onChange={alterField}
-              defaultValue={customer.company}
-              name="company"
-              id="company"
-            >
-              <option value="0">Selecione uma empresa</option>
-              {companies.map(i=>(
-                <option key={i.id} value={i.id}>{i.name}</option>
-              ))}
-            </select>
-          </div>
-          <div data-testid="titulation-container">
-            <label htmlFor="titulation">Titulação:</label>
-            <input
-              type="text"
-              name="titulation"
-              id="titulation"
-              defaultValue={customer.titulation}
-              onChange={alterField}
-            />
-          </div>
+          <TextInput
+            name="first_name"
+            id="first_name"
+            value={customer.first_name}
+            onChange={alterField}
+            label="Primeiro nome:"
+          />
+          <TextInput
+            name="last_name"
+            id="last_name"
+            value={customer.last_name}
+            onChange={alterField}
+            label="Sobrenome:"
+          />
+          <TextInput
+            name="email"
+            onChange={alterField}
+            value={customer.email}
+            id="email"
+            label="E-mail:"
+          />
+          <Select
+            id="city"
+            label="Cidade"
+            name="city"
+            options={cities.map(i=>({key:i.id,label:i.name}))}
+            onChange={alterField}
+            value={customer.city}
+          />
+          <Select
+            label="Empresa:"
+            name="company"
+            id="company"
+            options={companies.map(i=>({key:i.id,label:i.name}))}
+            onChange={alterField}
+            value={customer.company}
+          />
+          <TextInput
+            label="Titulação:"
+            id="titulation"
+            name="titulation"
+            onChange={alterField}
+            value={customer.titulation}
+          />
           <div data-testid="gender-container">
             <label htmlFor="gender">Gênero:</label>
             <div className="flex flex-col">
