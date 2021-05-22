@@ -43,6 +43,8 @@ This will build and setup an application to docker-cli (runned at port 8080).
 
 ### Routes open
 
+Running at <https://customers-portifolio.herokuapp.com/>
+
 `/customer` - GET, POST and PATCH - CRU(no D) routes
 
 `/customer/:id` - GET - gets one customer by its ID
