@@ -13,7 +13,7 @@ const EditCustomer = () => {
     error,
     loading,
     companies,
-    update
+    updateCustomer
   } = useLoadCustomerById();
 
   return (
@@ -114,7 +114,7 @@ const EditCustomer = () => {
               <span className="text-black font-bold">{error?.message||''}</span>
             </div>
             <div data-testid="submit-container">
-              <button className="submit" onClick={update} type="submit">
+              <button className="submit" onClick={updateCustomer} type="submit">
                 Alterar informações
               </button>
             </div>

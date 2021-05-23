@@ -1,12 +1,13 @@
 import { getAllCities, getAllCompanies } from 'api/utils-api';
 import { updateCustomer } from 'api/customers-api';
-import { City, Company, Customer } from 'portfolio-domain';
+import { City, Company, Customer, CustomerDTO } from 'portfolio-domain';
 import { useEffect, useState, useCallback } from 'react';
 import { useRouteMatch } from 'react-router';
 import { customerById } from '../api/customers-api';
+import { createCitySelector, createCompanySelector } from './utils/createSelect';
 
 type Props = {
-  id?: string;
+  id: string;
 }
 
 type Event = React.ChangeEvent<HTMLInputElement|HTMLSelectElement>;
@@ -16,54 +17,47 @@ export const useLoadCustomerById = () => {
   const [loading, setLoading] = useState(true);
   const [cities, setCities] = useState([] as City[]);
   const [companies, setCompanies] = useState([] as Company[]);
-  const [customer, setCustomer] = useState({} as Customer);
+  const [customer, setCustomer] = useState({} as CustomerDTO);
   const [error, setError] = useState(null as {message:string}|null);
 
-  const alterField = useCallback((e: Event) => {
+  const alterField = useCallback((event: Event) => {
     const draft = {...customer} as Record<string, unknown>;
-    draft[e.target.name] = e.target.value;
-    setCustomer(draft as Customer);
+    draft[event.target.name] = event.target.value;
+    setCustomer(draft as CustomerDTO);
   }, [customer]);
 
   useEffect(() => {
     Promise.all([
       getAllCities(),
       getAllCompanies(),
-      customerById(id as string)
+      customerById(id)
     ])
-      .then(e=> {
-        setCities([
-          { id: 0, name: 'Selecione uma cidade'},
-          ...e[0]
-        ]);
-        setCompanies([
-          {id: 0, name: 'Selecione uma empresa'},
-          ...e[1]
-        ]);
-        setCustomer(e[2]);
+      .then((data) => {
+        const [
+          allCities,
+          allCompanies,
+          existentCustomer] = data;
+        setCities(createCitySelector(allCities));
+        setCompanies(createCompanySelector(allCompanies));
+        setCustomer(existentCustomer as CustomerDTO);
       })
       .catch(console.error)
       .finally(()=>setLoading(false));
   }, []);
 
-  const update = useCallback((e) => {
-    e.preventDefault();
-    updateCustomer(customer)
-      .then(({status, data}) => {
-        if(status === 202) {
-          window.location.href = '/customers-api';
-          return;
-        }
-        setError(data);
-      })
-      .catch(e => {
-        console.log(customer);
-        if(/409/.test(e.message)) {
-          setError({
-            message: 'Costumer email already created!'
-          });
-        }
-      });
+  const updateCustomer = useCallback(async (event) => {
+    event.preventDefault();
+    try {
+      const validCustomer = Customer(customer as CustomerDTO);
+      await updateCustomer(validCustomer);
+      window.location.href = '/customers-api';
+    } catch (error) {
+      if(error.response) {
+        setError(error.response.data);
+        return;
+      }
+      setError(error);
+    }
   }, [customer]);
 
   return {
@@ -73,6 +67,6 @@ export const useLoadCustomerById = () => {
     companies,
     cities,
     error,
-    update
+    updateCustomer
   };
 };

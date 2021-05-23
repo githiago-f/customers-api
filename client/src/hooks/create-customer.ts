@@ -1,17 +1,15 @@
 import { createCustomer } from 'api/customers-api';
 import { getAllCities, getAllCompanies } from 'api/utils-api';
-import { City, Company, CustomerDTO } from 'portfolio-domain';
+import { City, Company, Customer, CustomerDTO } from 'portfolio-domain';
 import React, { useCallback, useEffect, useState } from 'react';
+import { createCitySelector, createCompanySelector } from './utils/createSelect';
 
 type Event = React.ChangeEvent<HTMLInputElement|HTMLSelectElement>;
 
 export const useCreateCustomer = () => {
   const [cities, setCities] = useState([] as City[]);
   const [companies, setCompanies] = useState([] as Company[]);
-  const [customer, setCustomer] = useState({
-    city: 0,
-    company: 0
-  } as CustomerDTO);
+  const [customer, setCustomer] = useState({} as CustomerDTO);
   const [error, setError] = useState(null as {message:string}|null);
 
   const alterField = useCallback((e: Event) => {
@@ -22,30 +20,28 @@ export const useCreateCustomer = () => {
 
   useEffect(() => {
     Promise.all([getAllCities(), getAllCompanies()])
-      .then(e=> {
-        setCities(e[0]);
-        setCompanies(e[1]);
+      .then(([cities, companies]) => {
+        setCities(createCitySelector(cities));
+        setCompanies(createCompanySelector(companies));
       })
-      .catch(console.error);
+      .catch(setError);
   }, []);
 
-  const create = useCallback((e) => {
+  const create = useCallback(async (e) => {
     e.preventDefault();
-    createCustomer(customer)
-      .then(({status, data}) => {
-        if(status === 201) {
-          window.location.href = '/customers-api';
-          return;
-        }
-        setError(data);
-      })
-      .catch(e => {
-        if(/409/.test(e.message)) {
-          setError({
-            message: 'Costumer email already created!'
-          });
-        }
-      });
+    try {
+      const validCustomer = Customer(customer);
+      const {status} = await createCustomer(validCustomer);
+      if(status === 201) {
+        window.location.href = '/customers-api';
+      }
+    } catch (e) {
+      if(e.response) {
+        setError(e.response.data);
+        return;
+      }
+      setError(e);
+    }
   }, [customer]);
 
   return {

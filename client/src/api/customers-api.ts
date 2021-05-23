@@ -1,4 +1,4 @@
-import { Customer, CustomerDTO, CustomersInCity, Page } from 'portfolio-domain';
+import { Customer, CustomersInCity, Page } from 'portfolio-domain';
 import { portfolioApi } from './config';
 
 export const customersGroupedByCity = async () => {
@@ -20,7 +20,7 @@ export const customersByCity = async (city_id: string, page = 0) => {
   return data;
 };
 
-export const createCustomer = async (customer: CustomerDTO) => {
+export const createCustomer = async (customer: Customer) => {
   const {status, data} = await portfolioApi.post('/customer', customer);
   return {status, data};
 };

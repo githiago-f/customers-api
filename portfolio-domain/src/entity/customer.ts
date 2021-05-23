@@ -26,7 +26,7 @@ export type Customer = {
 };
 
 export const Customer = (customerDto: CustomerDTO) => {
-  if(isNumber(customerDto.id) && customerDto.id < 1) {
+  if(isNumber(customerDto.city) && customerDto.city < 1) {
     throw new InvalidCity();
   }
   if(isNumber(customerDto.company) && customerDto.company < 1){
