@@ -43,15 +43,15 @@ This will build and setup an application to docker-cli (runned at port 8080).
 
 ### Routes open
 
-Running at <https://customers-portifolio.herokuapp.com/>
+Since this api doesnt use swagger, keep in mind these endpoints:
 
-`/customer` - GET, POST and PATCH - CRU(no D) routes
+`/customer` - GET, POST and PATCH
 
 `/customer/:id` - GET - gets one customer by its ID
 
-`/city` - GET and POST - CR(no U or D) routes
+`/city` - GET and POST
 
-`/companies` - GET and POST - CR(no U or D) routes
+`/companies` - GET and POST
 
 ### Considerations
 
